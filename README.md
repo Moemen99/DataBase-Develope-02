@@ -69,4 +69,117 @@ In this example:
 
 ---
 
-**Note**: While these numeric data types are common in many SQL databases, the exact ranges and behaviors might vary slightly between different database management systems. Always consult the documentation for your specific DBMS for the most accurate information.
+
+### Fraction Data Types
+
+1. **SMALLMONEY**
+   - 4 bytes before the decimal point, 4 digits after
+   - Used for monetary or currency values (smaller range)
+
+2. **MONEY**
+   - 8 bytes before the decimal point, 4 digits after
+   - Used for monetary or currency values (larger range)
+
+3. **REAL**
+   - 4 bytes
+   - Approximate numeric data from -3.40E+38 to 3.40E+38
+   - 7 digits precision
+
+4. **FLOAT**
+   - 8 bytes
+   - Approximate numeric data from -1.79E+308 to 1.79E+308
+   - 15 digits precision
+
+5. **DECIMAL (or NUMERIC)**
+   - Example: DECIMAL(5,2)
+   - Exact numeric data
+   - First parameter is total number of digits, second is number of digits after the decimal point
+   - Most commonly used for precise fractional numbers
+   - Example: DECIMAL(5,2) allows 124.22, but not 18.1, 12.2212, or 2.1234
+
+### String Data Types
+
+1. **CHAR(n)**
+   - Fixed-length character string
+   - Allocates all n characters in memory
+   - Example: CHAR(10)
+
+2. **VARCHAR(n)**
+   - Variable-length character string
+   - Allocates only the used characters (up to n) in memory
+   - Example: VARCHAR(10)
+
+3. **NCHAR(n) and NVARCHAR(n)**
+   - Unicode character strings
+   - Used for non-English language data
+   - NVARCHAR(MAX) for large Unicode strings up to 2GB
+
+### Date and Time Data Types
+
+1. **DATE**
+   - Format: MM/dd/yyyy (may vary based on server settings)
+
+2. **TIME**
+   - Format: hh:mm:ss.nnnnnnn
+   - Default precision: TIME(3) - milliseconds
+   - Can specify precision, e.g., TIME(5) for microsecond precision
+
+3. **SMALLDATETIME**
+   - Format: MM/dd/yyyy hh:mm:00
+   - No seconds precision
+
+4. **DATETIME**
+   - Format: MM/dd/yyyy hh:mm:ss.123
+   - 3-digit millisecond precision
+
+5. **DATETIME2(n)**
+   - Format: MM/dd/yyyy hh:mm:ss.nnnnnnn
+   - Can specify precision (n)
+   - Example: DATETIME2(4) gives MM/dd/yyyy hh:mm:ss.1234
+
+6. **DATETIMEOFFSET**
+   - Includes time zone awareness
+   - Example: 11/23/2020 10:30 +02:00
+
+### Binary Data Types
+
+1. **BINARY**
+   - Fixed-length binary data
+
+2. **VARBINARY**
+   - Variable-length binary data
+
+3. **IMAGE**
+   - Variable-length binary data (deprecated, use VARBINARY(MAX) instead)
+
+Note: Storing large files (like videos) directly in the database is generally not recommended due to performance issues. Alternative approaches for file storage should be considered.
+
+### Other Specialized Data Types
+
+1. **XML**
+   - Stores XML formatted data
+
+2. **SQL_VARIANT**
+   - Stores values of various SQL Server-supported data types
+
+## Usage Notes
+
+- Choose the appropriate data type based on the expected data and usage patterns.
+- Using the correct data type can improve query performance and reduce storage requirements.
+- For storing large files or BLOBs (Binary Large Objects), consider using file system storage and storing the file path in the database instead of the file itself.
+- Always consult your specific database system's documentation, as data type implementations can vary between different database management systems.
+
+## Next Steps
+
+- Practice creating tables with various data types
+- Learn about data type conversion and casting
+- Explore best practices for database schema design
+- Understand indexing and its relation to data types
+
+---
+
+**Note**: While these data types are common in many SQL databases, the exact behavior and availability might vary between different database management systems. Always consult the documentation for your specific DBMS for the most accurate information.
+
+
+
+
