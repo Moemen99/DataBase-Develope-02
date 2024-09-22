@@ -182,4 +182,90 @@ Note: Storing large files (like videos) directly in the database is generally no
 
 
 
+## SQL Variables
+
+Variables in SQL are used to store and manipulate data temporarily. There are two main types of variables in SQL: global variables and local variables.
+
+### 1. Global Variables (Built-In)
+
+- These are predefined by the SQL Server system
+- Start with double @ symbols (@@)
+- Cannot be created by users
+- Provide system information
+
+Examples:
+```sql
+-- Display SQL Server version
+PRINT @@VERSION
+
+-- Display Server Name
+PRINT @@SERVERNAME
+```
+
+Common global variables:
+- `@@VERSION`: Shows the version of SQL Server
+- `@@SERVERNAME`: Displays the name of the server
+
+Usage:
+- Select the desired code and click on the "Execute" tab or press F5 to run
+- SQL is not case-sensitive, but it's preferable to use naming conventions like PascalCase or camelCase for readability
+
+### 2. Local Variables (User-Defined)
+
+- Defined by users for temporary data storage
+- Start with a single @ symbol
+- Scope is limited to the batch or stored procedure where they are declared
+
+Syntax:
+```sql
+DECLARE @VariableName DataType [= InitialValue]
+```
+
+Example:
+```sql
+-- Declare and initialize a variable
+DECLARE @Name VARCHAR(10) = 'Ahmed'
+PRINT @Name
+
+-- Change the value of the variable
+SET @Name = 'Mahmoud'
+PRINT @Name
+```
+
+Usage notes:
+- Variables must be declared before use
+- Use the DECLARE keyword to create a variable
+- Variables don't allocate memory until assigned a value
+- If you exceed the defined length (e.g., VARCHAR(10)), it will truncate to the specified length
+
+### Variable Best Practices
+
+1. Use descriptive names for variables
+2. Initialize variables when declaring them if possible
+3. Use the appropriate data type for the variable's intended content
+4. Be aware of variable scope (where the variable can be used)
+5. Use SET for assigning values to variables (except during declaration)
+
+### Example: Combining Global and Local Variables
+
+```sql
+DECLARE @ServerInfo VARCHAR(100)
+
+SET @ServerInfo = 'Server Name: ' + @@SERVERNAME + ', Version: ' + CAST(@@VERSION AS VARCHAR(50))
+
+PRINT @ServerInfo
+```
+
+This example combines a local variable with global variables to create a custom server information string.
+
+## Next Steps
+
+- Learn about using variables in SQL queries and stored procedures
+- Explore how to use variables for dynamic SQL generation
+- Understand variable scope and its implications in complex scripts
+- Practice using both global and local variables in your SQL scripts
+
+---
+
+**Note**: While these variable concepts are common in many SQL databases, the exact syntax and available global variables might vary between different database management systems. Always consult the documentation for your specific DBMS for the most accurate information.
 
